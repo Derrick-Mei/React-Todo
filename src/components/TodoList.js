@@ -1,5 +1,4 @@
-/*eslint no-unused-vars: "off"*/
-import React from 'react';
+import React from "react";
 
 const TodoList = props => {
   const remove = obj => {
@@ -10,7 +9,10 @@ const TodoList = props => {
     <div>
       {props.todoList.map(todo => {
         return (
-          <div key={todo.title + todo.id}>
+          <div
+            style={todo.completed ? { textDecoration: "line-through" } : null}
+            key={todo.title + todo.id}
+          >
             {todo.title}
             <button
               onClick={() => {
