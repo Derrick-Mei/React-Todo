@@ -1,36 +1,45 @@
-import React, { Component } from 'react';
-import TodoList from './TodoList';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import TodoList from "./TodoList";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       todoList: [],
-      todo: ''
+      todo: ""
     };
-    this.handleTodoChange = this.handleTodoChange.bind(this);
-    this.handleAddTodo = this.handleAddTodo.bind(this);
-    this.handleRemoveTodo = this.handleRemoveTodo.bind(this);
   }
-  handleRemoveTodo(todoId) {
+
+  handleRemoveTodo = todoId => {
     const todoList = this.state.todoList;
-    todoList.forEach((todo, i) => {
-      if (todo.id === todoId) {
-        todoList.splice(i, 1);
+    const list = todoList.map(todo => {
+      if (todoId === todo.id) {
+        todo.completed = !todo.completed;
       }
+      return todo;
     });
-    this.setState({ todoList });
-  }
-  handleTodoChange(event) {
+    console.log(list);
+    this.setState({ todoList: list });
+  };
+
+  handleTodoChange = event => {
     this.setState({ todo: event.target.value });
-  }
-  handleAddTodo() {
-    const todo = { id: this.state.todoList.length };
-    todo['title'] = this.state.todo;
-    const todoList = this.state.todoList;
-    todoList.push(todo);
-    this.setState({ todoList, todo: '' });
-  }
+  };
+
+  handleAddTodo = () => {
+    const todoList = this.state.todoList; //reference todo array
+
+    const todo = {
+      // build out our todo object
+      id: this.state.todoList.length + this.state.todo,
+      title: this.state.todo,
+      completed: false
+    };
+
+    todoList.push(todo); // add todo to todo list
+    this.setState({ todoList, todo: "" });
+  };
   render() {
     return (
       <div>
