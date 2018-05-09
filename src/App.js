@@ -17,9 +17,9 @@ class App extends Component {
   }
 
   handleAddTask = () => {
-    let tasks = this.state.tasks;
-    tasks.push(this.state.task);
-    this.setState({"task": '', "tasks": tasks});
+    let stateTasks = this.state.tasks;
+    stateTasks.push(this.state.task);
+    this.setState({task: '', "tasks": stateTasks});
   }
 
   handleTask = (event) => {
@@ -39,7 +39,7 @@ class App extends Component {
         <h1 className='header'>{this.state.title}</h1>
         <AddField name="task" onChange={this.handleTask} value={this.state.task} />
         <AddButton onClick={this.handleAddTask} />
-        <ListView onClick={this.handleTaskDone} tasks={this.state.tasks} />
+        <ListView onClick={this.handleTaskDone} listViewTaskProp={this.state.tasks} />
       </div>
     );
   }

@@ -10,7 +10,7 @@ export const ListView = (props) => {
   return (
     <ul>
       {
-        props.tasks.map((task, index) => <li key={index} onClick={() => props.onClick(index)}>{task}
+        props.listViewTaskProp.map((item, index) => <li key={index} onClick={() => props.onClick(index)}>{item}
         <button className="button">  Completed</button>
         <button className="button">  Delete</button>
         </li>)
